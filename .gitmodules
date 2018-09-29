@@ -1,0 +1,12 @@
+[submodule "UITraffic_Website_Backend"]
+	path = UITraffic_Website_Backend
+	url = https://github.com/KevinPal/UITraffic_Website_Backend
+[submodule "UITraffic_Website_Frontend"]
+	path = UITraffic_Website_Frontend
+	url = https://github.com/KevinPal/UITraffic_Website_Frontend
+[submodule "UITraffic_Android"]
+	path = UITraffic_Android
+	url = https://github.com/KevinPal/UITraffic_Android
+[submodule "UITraffic_IOS"]
+	path = UITraffic_IOS
+	url = https://github.com/KevinPal/UITraffic_IOS
