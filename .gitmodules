@@ -1,0 +1,12 @@
+[submodule "android"]
+	path = android
+	url = ./android/
+[submodule "ios"]
+	path = ios
+	url = ./ios/
+[submodule "website_frontend"]
+	path = website_frontend
+	url = ./website_backend
+[submodule "website_backend"]
+	path = website_backend
+	url = ./website_backend/
