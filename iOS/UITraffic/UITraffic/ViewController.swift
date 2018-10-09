@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var JSONLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let locationManager = CLLocationManager()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -27,6 +38,7 @@ class ViewController: UIViewController {
                 self.JSONLabel.setNeedsDisplay()
             }
         }
+        
     
         }
     
@@ -57,6 +69,11 @@ class ViewController: UIViewController {
         }.resume()
 
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else {return}
+        print("locations = \(locValue.latitude) \(locValue.longitude) " )
     }
     
 }
