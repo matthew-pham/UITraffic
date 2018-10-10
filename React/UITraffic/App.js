@@ -8,25 +8,28 @@ export default class App extends React.Component {
 	};
 
   render() {
-	  if(!this.state.flag){
+		if(!this.state.flag){
 		this.state.flag = true
 		this.getLocations()
-	  }
-    return (
-      <View style={styles.container}>
-        <Text>UI Traffic!</Text>
-		<Text>{this.state.output}</Text>
-      </View>
-
-    );
+		}
+		return(
+			<View style={styles.container}>
+			<Text>UI Traffic!</Text>
+			<Text>{this.state.output}</Text>
+			</View>
+		);
   }
+  
+  /*
+	Gets data from database
+  */
   getLocations = () => {
-	  const formData = new FormData();
-	  formData.append('user', 'INSERT USER HERE');
-	  formData.append('pass', 'INSERT PASSWORD HERE');
-	  formData.append('db', 'mydatabase');
-	  formData.append('table', 'location');
-	  formData.append('action', 'get')
+	const formData = new FormData();
+	formData.append('user', 'INSERT USER HERE');
+	formData.append('pass', 'INSERT PASSWORD HERE');
+	formData.append('db', 'mydatabase');
+	formData.append('table', 'location');
+	formData.append('action', 'get')
 
 	return fetch('INSERT URL HERE', 
 		{
@@ -35,12 +38,11 @@ export default class App extends React.Component {
 				'Content-Type': 'form-data'
 			}, body:formData
 		}
-	).then( (data) => data.text()).then((data1) => this.setState({output: data1})); 
+		).then( (data) => data.text()).then((data1) => this.setState({output: data1})); 
 	
 	}  
 
 }
-
 
 const styles = StyleSheet.create({
   container: {
