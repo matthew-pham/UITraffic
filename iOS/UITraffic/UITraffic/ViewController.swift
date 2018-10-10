@@ -13,11 +13,11 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var JSONLabel: UILabel!
+    let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let locationManager = CLLocationManager()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+       // locationManager.requestAlwaysAuthorization()
+       locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -73,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else {return}
-        print("locations = \(locValue.latitude) \(locValue.longitude) " )
+        print("location: \(locValue.latitude) \(locValue.longitude) " )
     }
     
 }
