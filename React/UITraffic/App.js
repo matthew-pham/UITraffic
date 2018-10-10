@@ -18,7 +18,7 @@ export default class App extends React.Component {
 			<Text>{this.state.output}</Text>
 			</View>
 		);
-  }
+	}
   
   /*
 	Gets data from database
@@ -34,11 +34,8 @@ export default class App extends React.Component {
 	return fetch('INSERT URL HERE', 
 		{
 			method: 'POST',
-			headers: {
-				'Content-Type': 'form-data'
-			}, body:formData
-		}
-		).then( (data) => data.text()).then((data1) => this.setState({output: data1})); 
+			headers: {'Content-Type': 'form-data'}, body:formData
+		}).then( (data) => data.text()).then((data1) => this.setState({output: data1})); 
 	
 	}  
 
