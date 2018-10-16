@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import MapView from 'react-native-maps';
 
 export default class App extends React.Component {
 	state = {
 		output: "", 
-		flag: false
+		flag: false,
+		markers: []
 	};
 
   render() {
@@ -17,21 +19,43 @@ export default class App extends React.Component {
 			<Text>UI Traffic!</Text>
 			<Text>{this.state.output}</Text>
 			</View>
+			<MapView
+			    showUserLocation=true
+			    followsUserLocation=true
+			    onMapReady = {this.onReady}
+			    {this.state.markers.map(marker => (
+				<Marker
+				    coordinate={marker.latlng}
+				    title={marker.title}
+				/>
+			    ))}
+			/>
 		);
 	}
+
+  onReady() {
+  	var loc = this.getLocations();
+        var locObjArr = JSON.parse(loc);
+	this.state.markers = locObjArr.map( locObj => (
+				{
+					latlng: {
+						lat: locObj.latitude,
+						lng: locObj.longitude
+					},
+					title: locObj.time
+				}
+				));
+  }
   
-  /*
-	Gets data from database
-  */
   getLocations = () => {
 	const formData = new FormData();
-	formData.append('user', 'INSERT USER HERE');
-	formData.append('pass', 'INSERT PASSWORD HERE');
+	formData.append('user', 'insert user');
+	formData.append('pass', 'insert pass');
 	formData.append('db', 'mydatabase');
 	formData.append('table', 'location');
 	formData.append('action', 'get')
 
-	return fetch('INSERT URL HERE', 
+	return fetch('insert url', 
 		{
 			method: 'POST',
 			headers: {'Content-Type': 'form-data'}, body:formData
