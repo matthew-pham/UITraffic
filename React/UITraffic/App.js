@@ -22,25 +22,18 @@ export default class App extends React.Component {
 	
 	
   render() {
-	  this._getLocationAsync()
-	   let text = '';
-	   let longitude = ''
-	   let latitude = ''
+	this._getLocationAsync()
+	  let text = '';
+	  let longitude = ''
+	  let latitude = ''
 	   
     if (this.state.errorMessage) {
       text = this.state.errorMessage;
     } else if (this.state.location) {
-      //text = JSON.stringify(this.state.location);
 	  text = JSON.stringify(this.state.location.coords.longitude);
 	  longitude = "Longitude: " + JSON.stringify(this.state.location.coords.longitude);
 	  latitude = "Latitude: " + JSON.stringify(this.state.location.coords.latitude);
     }
-	/*
-		if(!this.state.flag){
-		this.state.flag = true
-		this.getLocations()
-		}
-		*/
 		return(
 			<View style={styles.container}>
 			<Text>UI Traffic!</Text>
@@ -72,11 +65,11 @@ export default class App extends React.Component {
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const styles = StyleSheet.create({
+   container: {
+     flex: 1,
+     backgroundColor: '#fff',
+     alignItems: 'center',
+     justifyContent: 'center',
+    },
+  });
