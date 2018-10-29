@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1><center>UITraffic</center></h1>
+    <!--<img src="trafficBackground.jpg" alt="image">-->
+<p id="post">
+    <button type="button" onclick="loadDoc()">Request data</button>
+</p>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("post").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "website/api.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("user=root&pass=password&db=mydatabase&table=location&action=get");
+}
+</script>
+    
+    <div class="white-box">
+    </div>
+</body>
+</html>
