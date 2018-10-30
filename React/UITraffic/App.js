@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import {Constants, Location, Permissions } from 'expo';
+import { createBottomTabNavigator } from 'react-navigation'
 
-export default class App extends React.Component {
+export class Home extends React.Component {
   state = {
 	output: "", 
 	flag: false,
@@ -28,7 +29,7 @@ export default class App extends React.Component {
   render() {
 			if(!this.state.flag){
 			this.state.flag = true;
-			this.handleLocation();
+			//this.handleLocation();
 			}
 		return(
 			<View style={styles.container}>
@@ -38,7 +39,6 @@ export default class App extends React.Component {
 			</View>
 		);
 	}
-  
   /*
 	Gets data from database
   */
@@ -100,6 +100,24 @@ export default class App extends React.Component {
 
 }
 
+	/*
+		Settings screen
+	*/
+	export class Settings extends Component {
+		render(){
+		return(
+			<View style={styles.container}>
+			<Text>Settings</Text>
+			</View>
+		);	
+		}
+	}
+
+
+  export default createBottomTabNavigator({
+	Home: Home,
+	Settings: Settings
+  });
   const styles = StyleSheet.create({
    container: {
      flex: 1,
