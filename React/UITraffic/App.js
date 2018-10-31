@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
+import MapView from 'react-native-maps';
 import {Constants, Location, Permissions } from 'expo';
 import { createBottomTabNavigator } from 'react-navigation'
 
@@ -7,6 +8,7 @@ export class Home extends React.Component {
   state = {
 	output: "", 
 	flag: false,
+	markers: []
 	globalLongitude: "",
 	globalLatitude: "",
 	testLon: "",
@@ -39,18 +41,19 @@ export class Home extends React.Component {
 			</View>
 		);
 	}
+  
   /*
 	Gets data from database
   */
   getLocations = () => {
 	const formData = new FormData();
-	formData.append('user', 'INSERT USER HERE');
-	formData.append('pass', 'INSERT PASSWORD HERE');
+	formData.append('user', 'insert user');
+	formData.append('pass', 'insert pass');
 	formData.append('db', 'mydatabase');
 	formData.append('table', 'location');
 	formData.append('action', 'get')
 
-	return fetch('INSERT URL HERE', 
+	return fetch('insert url', 
 		{
 			method: 'POST',
 			headers: {'Content-Type': 'form-data'}, body:formData
