@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import {Constants, Location, Permissions } from 'expo';
 import { createBottomTabNavigator } from 'react-navigation'
+import { setCustomText } from 'react-native-global-props'
 
 export class Home extends React.Component {
   state = {
@@ -31,13 +32,17 @@ export class Home extends React.Component {
   render() {
 			if(!this.state.flag){
 			this.state.flag = true;
-			//this.handleLocation();
+			this.handleLocation();
 			}
 		return(
-			<View style={styles.container}>
-			<Text>UI Traffic!</Text>
-			 <Text>{this.state.globalLongitude}</Text>
-			  <Text>{this.state.globalLatitude}</Text>
+			<View style={styles.content}>
+			<Text style ={styles.test}>{"\n"}UI Traffic!{"\n"}</Text>
+			 <Text style = {styles.test2}>{this.state.globalLongitude}</Text>
+			  <Text style = {styles.test2}>{this.state.globalLatitude}{"\n"}</Text>
+			  <Image
+          style={{width: 226, height: 327}}
+          source={{uri: 'https://sustainability.illinois.edu/wp-content/themes/Divi-child/images/ui_logo.png'}}
+        />
 			</View>
 		);
 	}
@@ -92,7 +97,6 @@ export class Home extends React.Component {
 		 this.state.globalLatitude = "Latitude: " + JSON.stringify(this.state.location.coords.latitude);
 		 this.state.testLon = JSON.stringify(this.state.location.coords.longitude);
 		 this.state.testLat = JSON.stringify(this.state.location.coords.latitude);
-		 console.log(this.insertLocations());
 		 //aggregatedLocations = getLocations();
     }
 		setTimeout(this.handleLocation, 5000);
@@ -128,4 +132,19 @@ export class Home extends React.Component {
      alignItems: 'center',
      justifyContent: 'center',
     },
+	content:{
+	 flex: 1,
+	 backgroundColor: 'rgba(19, 41, 75, 1)',
+	 alignItems: 'center',
+	},
+	test:{
+	 fontSize: 48,
+	 fontFamily: "Chalkduster",
+	 color: 'rgba(232, 74, 39, 1)'
+	},
+	test2:{
+	  fontSize: 24,
+	 fontFamily: "Cochin",
+	 color: 'rgba(232, 74, 39, 1)'
+	}
   });
