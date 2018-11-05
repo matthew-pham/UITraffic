@@ -1,4 +1,4 @@
-    <script>
+
       var map, heatmap;
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
@@ -23,4 +23,3 @@
           new google.maps.LatLng(37.783206, -122.440829)
         ];
       }
-    </script>
