@@ -167,12 +167,12 @@ const styles = StyleSheet.create({
   },
   test: {
     fontSize: 48,
-    fontFamily: "Chalkduster",
+    //fontFamily: "Chalkduster",
     color: "rgba(232, 74, 39, 1)"
   },
   test2: {
     fontSize: 24,
-    fontFamily: "Cochin",
+    //fontFamily: "Cochin",
     color: "rgba(232, 74, 39, 1)"
   },
   map: {
