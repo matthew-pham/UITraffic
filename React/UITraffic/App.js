@@ -115,23 +115,34 @@ export class Home extends React.Component {
 */
 export class Map extends Component {
   state = {
-    initFlag: false
+    initFlag: false,
+    output: "",
+    locations: []
   };
 
   render() {
     this.init();
-
+    console.log(this.state.locations);
     return (
       <MapView
         style={styles.map}
         initialRegion={{
           latitude: 40.114883,
           longitude: -88.228081,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
+          latitudeDelta: 0.00922,
+          longitudeDelta: 0.00421
         }}
       >
-	<Circle center={ {latitude: 40.114883, longitude: -88.228081}} radius={1} /> 
+        {this.state.locations.map(point => (
+          <Circle
+            key={point}
+            center={{
+              latitude: parseFloat(point.latitude),
+              longitude: parseFloat(point.longitude)
+            }}
+            radius={5}
+          />
+        ))}
       </MapView>
     );
   }
@@ -139,29 +150,34 @@ export class Map extends Component {
   init = () => {
     if (!this.state.initFlag) {
       this.state.initFlag = true;
-      //this.run();
+      this.run(this);
     }
   };
+
+  run(me) {
+    console.log("running");
+    me.getLocations();
+    //setTimeout(me.run(me), 2000);
+  }
 
   /*
 	Gets data from database
   */
-  getLocations = () => {
+  getLocations() {
     const formData = new FormData();
     formData.append("user", "root");
     formData.append("pass", "password");
     formData.append("db", "mydatabase");
     formData.append("table", "location");
     formData.append("action", "get");
-
-    return fetch("https://uitraffic-matthewpham.c9users.io/website/api.php", {
+    console.log(formData);
+    fetch("http://www.uitraffic-matthewpham.c9users.io/website/api.php", {
       method: "POST",
-      headers: { "Content-Type": "form-data" },
       body: formData
     })
       .then(data => data.text())
-      .then(data1 => this.setState({ output: data1 }));
-  };
+      .then(data1 => this.setState({ locations: JSON.parse(data1) }));
+  }
 }
 
 export default createBottomTabNavigator({
