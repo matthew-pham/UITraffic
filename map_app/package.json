@@ -7,9 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4",
-    "react-native-maps": "^0.22.0"
+    "expo": "^30.0.1",
+    "expo-cli": "^2.2.4",
+    "react": "16.5.1",
+    "react-native": "0.57",
+    "react-native-maps": "^0.22.0",
+    "react-native-elements": "^0.19.1",
+    "react-navigation": "^2.18.2"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
