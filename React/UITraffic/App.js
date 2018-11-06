@@ -9,7 +9,7 @@ export class Home extends React.Component {
   state = {
 	output: "", 
 	flag: false,
-	markers: []
+	markers: [],
 	globalLongitude: "",
 	globalLatitude: "",
 	testLon: "",
@@ -108,14 +108,18 @@ export class Home extends React.Component {
 }
 
 	/*
-		Settings screen
+		Map screen
 	*/
-	export class Settings extends Component {
+	export class Map extends Component {
 		render(){
 		return(
-			<View style={styles.container}>
-			<Text>Settings</Text>
-			</View>
+			<MapView style = {styles.map}
+            initialRegion = {{
+                latitude: 13.139238380834923,
+                longitude: 80.25188422300266,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+                }}/>
 		);	
 		}
 	}
@@ -123,7 +127,7 @@ export class Home extends React.Component {
 
   export default createBottomTabNavigator({
 	Home: Home,
-	Settings: Settings
+	Map: Map
   });
   const styles = StyleSheet.create({
    container: {
@@ -146,5 +150,9 @@ export class Home extends React.Component {
 	  fontSize: 24,
 	 fontFamily: "Cochin",
 	 color: 'rgba(232, 74, 39, 1)'
-	}
+	},
+	   map: {
+        height: 100,
+        flex: 1
+  }
   });
