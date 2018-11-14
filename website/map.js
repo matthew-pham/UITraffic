@@ -12,7 +12,7 @@
         });
       }
       // Heatmap data: 500 Points
-      function getPoints() {
+      function getPoints(xhttp) {
         return [
             for (var key in xhttp) {
                 if (xhttp.hasOwnProperty(key)) {
