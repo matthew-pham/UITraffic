@@ -13,11 +13,11 @@
       }
       // Heatmap data: 500 Points
       function getPoints(xhttp) {
-        return [
-            for (var key in xhttp) {
-                if (xhttp.hasOwnProperty(key)) {
-                    new google.maps.LatLng(xhttp[key].latitude, xhttp[key].longitude)
-                }
+        var coordinates = [];
+        for (var key in xhttp) {
+            if (xhttp.hasOwnProperty(key)) {
+                coordinates.push(new google.maps.LatLng(xhttp[key].latitude, xhttp[key].longitude));
             }
-        ];
+        }        
+        return coordinates;
       }
