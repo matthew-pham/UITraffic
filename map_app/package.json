@@ -1,0 +1,27 @@
+{
+  "name": "map_app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "expo": "^30.0.1",
+    "expo-cli": "^2.2.4",
+    "react": "16.5.1",
+    "react-native": "0.57",
+    "react-native-maps": "^0.22.0",
+    "react-native-elements": "^0.19.1",
+    "react-navigation": "^2.18.2"
+  },
+  "devDependencies": {
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.48.3",
+    "react-test-renderer": "16.6.0-alpha.8af6728"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
