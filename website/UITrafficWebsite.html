@@ -3,14 +3,42 @@
     <head>
         <meta charset="utf-8">
         <style>
+              body {
+	            background-color: #132A4C;
+	          }
+            
+              h1 {
+                color: #E84A27;
+                font-family: "Chalkduster";
+              }
+            
+              #button1 {
+                display: block; 
+                margin: 0 auto; 
+	            color: #E84A27;
+                border: 1px solid;
+	            border-color: #E84A27;
+                background-color: #132A4C;
+              }
+            
+              #button1:hover {
+                background: #E84A27;
+                color: #fff;
+                border-color: #E84A27;		
+}
+            
               /* Always set the map height explicitly to define the size of the div
                * element that contains the map. */
               #map {
+		        margin: 0 auto 0 auto;
                 height: 100%;
+		        width: 75%;
               }
+            
               /* Optional: Makes the sample page fill the window. */
               html, body {
                 height: 100%;
+                width: 100%;
                 margin: 0;
                 padding: 0;
               }
@@ -21,7 +49,7 @@
         <!--<img src="trafficBackground.jpg" alt="image">-->
         
         <p id="post">
-            <button type="button" onclick="loadDoc()">Request data</button>
+            <button id = "button1" type="button" onclick="loadDoc()">Request data</button>
         </p>
         
         <div id="map"></div>
