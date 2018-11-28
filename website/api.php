@@ -9,14 +9,13 @@ $dbname = $_POST["db"];
 $table = $_POST['table'];
 $action = $_POST['action'];
 $data = $_POST['data'];
-
 // Create connection
 $conn = connect($servername, $username, $password, $dbname);
 
 $result = "";
 switch ($action) {
-    case "put" : $result = insert($conn, $table, json_decode($data, true)); break;
-    case "get" : $result = get($conn, $table); break;
+    case "put" : $result = insert($conn, $table, $data); break;
+    case "get" : $result = get($conn, $table, $data); break;
     default: $result =  "Invalid action: $action";
 }
 
@@ -25,6 +24,12 @@ echo $result;
 mysqli_close($conn);
 
 function insert($conn, $table, $data) {
+    if($data == null) {
+        return "No data was given";   
+    } elseif (!inJson($data)) {
+        return "Invalid json given";
+    }
+    $data = json_decode($data, true);
     $sql = sprintf(
     'INSERT INTO %s (%s) VALUES ("%s")',
     $table,
@@ -39,11 +44,29 @@ function insert($conn, $table, $data) {
     }
 }
 
-function get($conn, $table) {
+function get($conn, $table, $filter) {
+    
     $sql = sprintf(
     'SELECT * FROM %s',
     $table
     );
+    
+    if($filter != null and !isJson($filter)) {
+        return "Invalid json was given";   
+    } else if($filter != null) {
+        $filter = json_decode($filter, true);
+        var_dump($filter);
+        if ($filter['startDate'] != null and $filter['endDate'] != null) {
+            $sql = $sql . ' WHERE time > "' . $filter['startDate'] . '" AND time < "' . $filter['endDate'] . '"'; 
+        } else if ($filter['startDate'] != null) {
+            $sql = $sql . ' WHERE time > "' . $filter['startDate'] . '"'; 
+        } else if ($filter['endDate'] != null) {
+            $sql = $sql . ' WHERE time < "' . $filter['endDate'] . '"'; 
+        }
+    }
+    
+    echo $sql;
+    
     $result = mysqli_query($conn, $sql);
     if(!$result) {
         return "error: " . mysqli_error($conn);
@@ -61,5 +84,9 @@ function connect($servername, $username, $password, $dbname) {
         die("Connection failed: " . mysqli_connect_error());
     }
     return $conn;
+}   
+
+function isJson($string) {
+ return true; //TODO
 }
 ?>
