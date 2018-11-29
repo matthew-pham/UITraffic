@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Slider, Picker } from 'react-native';
 import MapView from 'react-native-maps';
 import {Constants, Location, Permissions } from 'expo';
 import { createBottomTabNavigator } from 'react-navigation'
@@ -72,14 +72,14 @@ export class Home extends React.Component {
 	
 	insertLocations = () => {
 	const formData = new FormData();
-	formData.append('user', 'INSERT USER HERE');
-	formData.append('pass', 'INSERT PASSWORD HERE');
+	formData.append('user', 'root');
+	formData.append('pass', 'password');
 	formData.append('db', 'mydatabase');
 	formData.append('table', 'location');
 	formData.append('action', 'put');
 	formData.append('data', '{\"longitude\": ' + this.state.testLon + ',\"latitude\": ' + this.state.testLat + '}')
 
-	return fetch('INSERT URL HERE', 
+	return fetch('https://uitraffic-matthewpham.c9users.io/website/api.php', 
 		{
 			method: 'POST',
 			headers: {'Content-Type': 'form-data'}, body:formData
@@ -97,9 +97,10 @@ export class Home extends React.Component {
 		 this.state.globalLatitude = "Latitude: " + JSON.stringify(this.state.location.coords.latitude);
 		 this.state.testLon = JSON.stringify(this.state.location.coords.longitude);
 		 this.state.testLat = JSON.stringify(this.state.location.coords.latitude);
+		 this.insertLocations();
 		 //aggregatedLocations = getLocations();
     }
-		setTimeout(this.handleLocation, 5000);
+		setTimeout(this.handleLocation, 10000);
 	}
 	
 	
@@ -111,16 +112,36 @@ export class Home extends React.Component {
 		Map screen
 	*/
 	export class Map extends Component {
+		state = {age: 50, time: "now"};
 		render(){
 		return(
+		<View style={{flex:1, backgroundColor: '#f3f3f3'}}>
+		<Picker
+  selectedValue={this.state.time}
+  style={{ height: 0, width: 100, position: "absolute", bottom: 200, left: 0}}
+  onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue})}>
+  <Picker.Item label="1 day ago" value="day" />
+  <Picker.Item label="1 hour ago" value="hour" />
+</Picker>
 			<MapView style = {styles.map}
             initialRegion = {{
-                latitude: 13.139238380834923,
-                longitude: 80.25188422300266,
+                latitude: 40.116421,
+                longitude: -88.243385,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
                 }}/>
+		<Text style={styles.sliderText}>{this.state.age}</Text>
+		<Slider
+         style={{ width: 375 }}
+         step={1}
+         minimumValue={0}
+         maximumValue={100}
+         value={this.state.age}
+         onValueChange={val => this.setState({ age: val })}
+        />
+		</View>
 		);	
+		
 		}
 	}
 
@@ -136,6 +157,11 @@ export class Home extends React.Component {
      alignItems: 'center',
      justifyContent: 'center',
     },
+	sliderText:{
+		fontSize: 24,
+		textAlign: 'center'
+		
+	},
 	content:{
 	 flex: 1,
 	 backgroundColor: 'rgba(19, 41, 75, 1)',
@@ -153,6 +179,7 @@ export class Home extends React.Component {
 	},
 	   map: {
         height: 100,
-        flex: 1
+        flex: 1,
+		zIndex: -1
   }
   });
