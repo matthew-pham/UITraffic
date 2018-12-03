@@ -149,7 +149,7 @@ export class Home extends React.Component {
       >
         {this.state.locations.map(point => (
           <Circle
-            key={point}
+            key={point.latitude.toString() + point.longitude.toString() + point.time.toString() + Math.random().toString()}
             center={{
               latitude: parseFloat(point.latitude),
               longitude: parseFloat(point.longitude)
