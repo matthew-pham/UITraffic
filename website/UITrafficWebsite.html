@@ -2,51 +2,29 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <style>
-              body {
-	            background-color: #132A4C;
-	          }
-            
-              h1 {
-                color: #E84A27;
-                font-family: "Chalkduster";
-              }
-            
-              #button1 {
-                display: block; 
-                margin: 0 auto; 
-	            color: #E84A27;
-                border: 1px solid;
-	            border-color: #E84A27;
-                background-color: #132A4C;
-              }
-            
-              #button1:hover {
-                background: #E84A27;
-                color: #fff;
-                border-color: #E84A27;		
-}
-            
-              /* Always set the map height explicitly to define the size of the div
-               * element that contains the map. */
-              #map {
-		        margin: 0 auto 0 auto;
-                height: 100%;
-		        width: 75%;
-              }
-            
-              /* Optional: Makes the sample page fill the window. */
-              html, body {
-                height: 100%;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-              }
-        </style>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
+    
     <body>
         <h1><center>UITraffic</center></h1>
-        <!--<img src="trafficBackground.jpg" alt="image">-->
+        
+        <center>
+            <div id="time-range">
+                <p>Pick a Time Range: <span class="slider-time">9:00 AM</span> - <span class="slider-time2">5:00 PM</span>
+
+                </p>
+                <div class="sliders_step1">
+                    <div id="slider-range"></div>
+                </div>
+            </div>
+        </center>
+        
+        <p></p>
         
         <p id="post">
             <button id = "button1" type="button" onclick="loadDoc()">Request data</button>
@@ -55,13 +33,15 @@
         <div id="map"></div>
     
         <script src ="getDatabase.js"></script>
-        <!--<script src ="map.js"></script>-->
         
         <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtqmI2K-QsfA5c9o3GN9upp1sWzhV5Ubc&libraries=visualization&callback=initMap">
         </script>
         
-        <!--<div class="white-box">
-        </div>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        
+        <script src ="rangeSlider.js"></script>
     </body>
 </html>
