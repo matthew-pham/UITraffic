@@ -120,7 +120,7 @@ export class Home extends React.Component {
 	export class Map extends Component {
 		state = {
       age: 50, 
-      time: "now"
+      time: "now",
       initFlag: false,
       output: "",
        locations: []
@@ -167,7 +167,7 @@ export class Home extends React.Component {
          minimumValue={0}
          maximumValue={100}
          value={this.state.age}
-         onValueChange={val => this.setState({ age: val })}
+         onValueChange={val => this.getLocations()}
         />
 		</View>
 		);	
