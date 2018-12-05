@@ -228,7 +228,7 @@ export class Home extends React.Component {
     }
 	console.log(startDate);
 	console.log("scale: " + scale);
-	formData.append('data', '{\"startDate\": "' + startDate.toISOString() + '",\"endDate\": "' + endDate.toISOString() + '"}')
+	formData.append('data', '{\"startDate\": "' + endDate.toISOString() + '",\"endDate\": "' + startDate.toISOString() + '"}')
     console.log(formData);
     fetch("http://www.uitraffic-matthewpham.c9users.io/website/api.php", {
       method: "POST",
