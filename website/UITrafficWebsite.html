@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
         <meta charset="utf-8">
         <style>
+	      .bgimg {
+    		    background-image: url("trafficBackground.jpg");
+		}
+	      div {
+    		height: 200px;
+		background-size: cover;
+		}	
               body {
 	            background-color: #132A4C;
 	          }
@@ -10,6 +16,10 @@
               h1 {
                 color: #E84A27;
                 font-family: "Chalkduster";
+		margin:auto;
+    	        line-height:200px;
+                vertical-align:middle;
+                font-size: 80px;
               }
             
               #button1 {
@@ -31,8 +41,8 @@
                * element that contains the map. */
               #map {
 		        margin: 0 auto 0 auto;
-                height: 100%;
-		        width: 75%;
+                	height: 75%;
+		        width: 100%;
               }
             
               /* Optional: Makes the sample page fill the window. */
@@ -43,11 +53,12 @@
                 padding: 0;
               }
         </style>
-    </head>
+
     <body>
+	<div class = "bgimg">
         <h1><center>UITraffic</center></h1>
         <!--<img src="trafficBackground.jpg" alt="image">-->
-        
+        </div>
         <p id="post">
             <button id = "button1" type="button" onclick="loadDoc()">Request data</button>
         </p>
