@@ -119,7 +119,8 @@ export class Home extends React.Component {
 	*/
 	export class Map extends Component {
 		state = {
-      age: 50, 
+      sliderValue: 100, 
+      dropDownValue: 0,
       time: "now",
       initFlag: false,
       output: "",
@@ -134,7 +135,7 @@ export class Home extends React.Component {
 		<Picker
   selectedValue={this.state.time}
   style={{ height: 0, width: 100, position: "absolute", bottom: 200, left: 0}}
-  onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue})}>
+  onValueChange={(itemValue, itemIndex) => this.setState({dropDownValue: itemIndex})}>
   <Picker.Item label="1 day ago" value="day" />
   <Picker.Item label="1 hour ago" value="hour" />
 </Picker>
@@ -154,27 +155,31 @@ export class Home extends React.Component {
               latitude: parseFloat(point.latitude),
               longitude: parseFloat(point.longitude)
             }}
-            radius={5}
+            radius={3}
           />
         ))}
       </MapView>
           
         
-		<Text style={styles.sliderText}>{this.state.age}</Text>
+		<Text style={styles.sliderText}>{this.state.sliderValue}</Text>
 		<Slider
          style={{ width: 375 }}
          step={1}
          minimumValue={0}
          maximumValue={100}
-         value={this.state.age}
-         onValueChange={val => this.getLocations()}
+         value={this.state.sliderValue}
+         onValueChange={val => this.handleSliderChange(val)}
+
         />
 		</View>
 		);	
 		
 		}
 	
-
+  handleSliderChange = (value) => {
+    this.setState({ sliderValue: value });
+    this.getLocations();
+  }
 
   init = () => {
     if (!this.state.initFlag) {
@@ -200,6 +205,29 @@ export class Home extends React.Component {
     formData.append("db", "mydatabase");
     formData.append("table", "location");
     formData.append("action", "get");
+
+    var scale = (100.0-this.state.sliderValue)/100.0;
+    var currentDate = new Date(Date.now());
+
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth();
+    var day = currentDate.getDay();
+    var hour = currentDate.getHours();
+
+    var startDate = "";
+    var endDate = "";
+
+    if(this.state.dropDownValue == 0) {
+        //Day
+        startDate = new Date(year, month, day - scale, hour);
+        endDate = new Date(year, month, day - scale - 1, hour);
+    } else if(this.state.dropDownValue == 1) {
+        //Hour
+        startDate = new Date(year, month, day, hour - scale);
+        endDate = new Date(year, month, day, hour - scale - 1);
+    }
+	console.log(startDate);
+	formData.append('data', '{\"startDate\": "' + startDate.toISOString() + '",\"endDate\": "' + endDate.toISOString() + '"}')
     console.log(formData);
     fetch("http://www.uitraffic-matthewpham.c9users.io/website/api.php", {
       method: "POST",
