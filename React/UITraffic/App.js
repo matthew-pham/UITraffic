@@ -121,7 +121,7 @@ export class Home extends React.Component {
 		state = {
       sliderValue: 100, 
       dropDownValue: 0,
-      time: "now",
+      time: "day",
       initFlag: false,
       output: "",
        locations: []
@@ -135,7 +135,7 @@ export class Home extends React.Component {
 		<Picker
   selectedValue={this.state.time}
   style={{ height: 0, width: 100, position: "absolute", bottom: 200, left: 0}}
-  onValueChange={(itemValue, itemIndex) => this.setState({dropDownValue: itemIndex})}>
+  onValueChange={(itemValue, itemIndex) => this.setState({time: itemValue, dropDownValue:itemIndex})}>
   <Picker.Item label="1 day ago" value="day" />
   <Picker.Item label="1 hour ago" value="hour" />
 </Picker>
@@ -227,6 +227,7 @@ export class Home extends React.Component {
         endDate = new Date(year, month, day, hour - scale - 1);
     }
 	console.log(startDate);
+	console.log("scale: " + scale);
 	formData.append('data', '{\"startDate\": "' + startDate.toISOString() + '",\"endDate\": "' + endDate.toISOString() + '"}')
     console.log(formData);
     fetch("http://www.uitraffic-matthewpham.c9users.io/website/api.php", {
