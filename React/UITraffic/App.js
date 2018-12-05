@@ -214,17 +214,17 @@ export class Home extends React.Component {
     var day = currentDate.getDay();
     var hour = currentDate.getHours();
 
-    var startDate = "";
-    var endDate = "";
+    var startDate = new Date(Date.now());
+    var endDate = new Date(Date.now());
 
     if(this.state.dropDownValue == 0) {
         //Day
-        startDate = new Date(year, month, day - scale, hour);
-        endDate = new Date(year, month, day - scale - 1, hour);
+        startDate.setHours(startDate.getHours() - scale * 24.0);
+        endDate.setHours(endDate.getHours() - (scale + 1.0) * 24.0);
     } else if(this.state.dropDownValue == 1) {
         //Hour
-        startDate = new Date(year, month, day, hour - scale);
-        endDate = new Date(year, month, day, hour - scale - 1);
+        startDate.setMinutes(startDate.getMinutes() - scale * 60.0);
+        endDate.setMinutes(endDate.getMinutes() - (scale + 1.0) * 60.0);
     }
 	console.log(startDate);
 	formData.append('data', '{\"startDate\": "' + startDate.toISOString() + '",\"endDate\": "' + endDate.toISOString() + '"}')
