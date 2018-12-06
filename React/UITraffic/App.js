@@ -262,12 +262,10 @@ export class Home extends React.Component {
 	},
 	test:{
 	 fontSize: 48,
-	 fontFamily: "Chalkduster",
 	 color: 'rgba(232, 74, 39, 1)'
 	},
 	test2:{
 	  fontSize: 24,
-	 fontFamily: "Cochin",
 	 color: 'rgba(232, 74, 39, 1)'
 	},
 	   map: {
