@@ -1,11 +1,19 @@
+#bgimg {
+    background-image: url("trafficBackground.jpg");
+    height: 200px;
+    background-size: cover;
+}
 body {
     background-color: #132A4C;
 }
 h1 {
     color: #E84A27;
     font-family: "Chalkduster";
-}
-            
+    margin: auto;
+    line-height: 200px;
+    vertical-align: middle;
+    font-size: 80px;
+}      
 #button1 {
     display: block; 
     margin: 0 auto; 
@@ -13,22 +21,19 @@ h1 {
     border: 1px solid;
     border-color: #E84A27;
     background-color: #132A4C;
-}
-            
+}       
 #button1:hover {
     background: #E84A27;
     color: #fff;
     border-color: #E84A27;		
 }
-
 /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
 #map {
     margin: 0 auto 0 auto;
-    height: 100%;
+    height: 370%;
     width: 75%;
 }
-
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
@@ -36,7 +41,6 @@ html, body {
     margin: 0;
     padding: 0;
 }
-
 #time-range p {
     font-family:"Chalkduster";
     font-size:14px;
