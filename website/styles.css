@@ -13,6 +13,16 @@ h1 {
     line-height: 200px;
     vertical-align: middle;
     font-size: 80px;
+    text-shadow:
+    /* Outline */
+        -1px -1px 0 #132A4C,
+        1px -1px 0 #132A4C,
+        -1px 1px 0 #132A4C,
+        1px 1px 0 #132A4C,  
+        -2px 0 0 #132A4C,
+        2px 0 0 #132A4C,
+        0 2px 0 #132A4C,
+        0 -2px 0 #132A4C;
 }      
 #button1 {
     display: block; 
