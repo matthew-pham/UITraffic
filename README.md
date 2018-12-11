@@ -13,7 +13,7 @@ Help people plan around human dense areas for walking traffic purposes. Predict 
 - Beta testers / fine tune aggregation
 
 ## Final Product
-Currently, we have both a mobile app and a webapp. The mobile app will periodically and anonoumosuly send the users data to our data base.  Both the mobile app and web app can then display the data on a heatmap. Both have ways to view specific time ranges.
+Currently, we have both a mobile app and a website. The mobile app will periodically and anonymously send the users data to our database.  Both the mobile app and website can then display the data on a heatmap. Both have ways to view specific time ranges.
 
 ## Techonologies used
 #### Mobile app
