@@ -1,3 +1,7 @@
+var hours1;
+var hours2;
+var minutes1;
+var minutes2;
 $("#slider-range").slider({
     range: true,
     min: 0,
@@ -5,12 +9,13 @@ $("#slider-range").slider({
     step: 15,
     values: [540, 1020],
     slide: function (e, ui) {
-        var hours1 = Math.floor(ui.values[0] / 60);
-        var minutes1 = ui.values[0] - (hours1 * 60);
+        hours1 = Math.floor(ui.values[0] / 60);
+        minutes1 = ui.values[0] - (hours1 * 60);
 
         if (hours1.length == 1) hours1 = '0' + hours1;
         if (minutes1.length == 1) minutes1 = '0' + minutes1;
         if (minutes1 == 0) minutes1 = '00';
+	/*
         if (hours1 >= 12) {
             if (hours1 == 12) {
                 hours1 = hours1;
@@ -27,17 +32,19 @@ $("#slider-range").slider({
             hours1 = 12;
             minutes1 = minutes1;
         }
+	*/
 
 
 
         $('.slider-time').html(hours1 + ':' + minutes1);
 
-        var hours2 = Math.floor(ui.values[1] / 60);
-        var minutes2 = ui.values[1] - (hours2 * 60);
-
+        hours2 = Math.floor(ui.values[1] / 60);
+        minutes2 = ui.values[1] - (hours2 * 60);
+	
         if (hours2.length == 1) hours2 = '0' + hours2;
         if (minutes2.length == 1) minutes2 = '0' + minutes2;
         if (minutes2 == 0) minutes2 = '00';
+	/*
         if (hours2 >= 12) {
             if (hours2 == 12) {
                 hours2 = hours2;
@@ -53,6 +60,7 @@ $("#slider-range").slider({
             hours2 = hours2;
             minutes2 = minutes2 + " AM";
         }
+	*/
 
         $('.slider-time2').html(hours2 + ':' + minutes2);
     }
