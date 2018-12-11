@@ -4,7 +4,7 @@ var coordinates = []
 function loadDoc() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("post").innerHTML = this.responseText;
+      //document.getElementById("post").innerHTML = this.responseText;
       json = JSON.parse(this.responseText);
      json.forEach(function(object) {
         coordinates.push(new google.maps.LatLng(object.latitude,object.longitude));
