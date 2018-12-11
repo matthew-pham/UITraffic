@@ -37,7 +37,7 @@ Currently, we have both a mobile app and a webapp. The mobile app will periodica
 
 - Many different libraries were used for the mobile app, and getting all the different libraries and versions wot work together took a long time
 - Javascript is a questionable language
-- Testing was inconvenient because in order to see how the website would interact with the database, Matthew had to host the website on a server every single time we wanted to test
+- Testing was inconvenient because in order to see how the website would interact with the database, Matthew had to host the website on a server every single time we wanted to test.
 
 
 ------------
