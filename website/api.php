@@ -60,7 +60,7 @@ function get($conn, $table, $filter) {
             $sql = $sql . ' WHERE time > "' . $filter['startDate'] . '"'; 
         } else if ($filter['endDate'] != null) {
             $sql = $sql . ' WHERE time < "' . $filter['endDate'] . '"'; 
-        }4
+        }
     }
     
 
