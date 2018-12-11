@@ -12,7 +12,7 @@ function loadDoc() {
          
         //what needs to be added below here is an if statement saying that as long as hour is between hours1 and hours2 (hours1 and hours2 are found in rangeSlider.js and they represent the hours the user has chosen on the slider) and the same for minute, then you can do the below
         if (hour >= hour1 && hour <= hour2) {
-		if (minute >= minutes1 && minute <= minutes2) {
+		  if (minute >= minutes1 && minute <= minutes2) {
 			coordinates.push(new google.maps.LatLng(object.latitude,object.longitude));
 		}
 	} 
