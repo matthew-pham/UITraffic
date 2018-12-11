@@ -4,8 +4,8 @@ var coordinates = []
 function loadDoc() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("post").innerHTML = this.responseText;
       json = JSON.parse(this.responseText);
+        document.getElementbyId("post").innerHTML = json[0].time;
      json.forEach(function(object) {
          //sliced the necessary parts of object.time (string) and put them into variables
          var hour = object.time.slice(-8, -6);
