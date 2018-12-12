@@ -26,7 +26,7 @@ mysqli_close($conn);
 function insert($conn, $table, $data) {
     if($data == null) {
         return "No data was given";   
-    } elseif (!inJson($data)) {
+    } elseif (!isJson($data)) {
         return "Invalid json given";
     }
     $data = json_decode($data, true);
@@ -45,7 +45,6 @@ function insert($conn, $table, $data) {
 }
 
 function get($conn, $table, $filter) {
-    
     $sql = sprintf(
     'SELECT * FROM %s',
     $table
@@ -55,7 +54,6 @@ function get($conn, $table, $filter) {
         return "Invalid json was given";   
     } else if($filter != null) {
         $filter = json_decode($filter, true);
-        var_dump($filter);
         if ($filter['startDate'] != null and $filter['endDate'] != null) {
             $sql = $sql . ' WHERE time > "' . $filter['startDate'] . '" AND time < "' . $filter['endDate'] . '"'; 
         } else if ($filter['startDate'] != null) {
@@ -65,8 +63,7 @@ function get($conn, $table, $filter) {
         }
     }
     
-    echo $sql;
-    
+
     $result = mysqli_query($conn, $sql);
     if(!$result) {
         return "error: " . mysqli_error($conn);
@@ -74,7 +71,12 @@ function get($conn, $table, $filter) {
         while($r = mysqli_fetch_assoc($result)) {
             $rows[] = $r;
         }
-        return json_encode($rows);
+        $json_string = json_encode($rows);
+        if($json_string == "null") {
+            return "[]";
+        } else {
+            return $json_string;
+        }
     }
 }
 
